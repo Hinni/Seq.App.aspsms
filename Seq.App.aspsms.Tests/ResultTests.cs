@@ -1,18 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Seq.App.aspsms.Models;
+﻿using Seq.App.aspsms.Models;
+using Xunit;
 
 namespace Seq.App.aspsms.Tests
 {
-    [TestClass]
     public class ResultTests
     {
-        [TestMethod]
+        [Fact]
         public void CheckValues()
         {
+            // Arrange
+
+            // Act
             var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
 
-            Assert.AreEqual("1", data.StatusCode);
-            Assert.AreEqual("OK", data.StatusInfo);
+            // Assert
+            Assert.Equal("1", data.StatusCode);
+            Assert.Equal("OK", data.StatusInfo);
         }
     }
 }
