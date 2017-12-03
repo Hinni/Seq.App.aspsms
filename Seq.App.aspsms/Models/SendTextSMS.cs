@@ -38,11 +38,11 @@ namespace Seq.App.aspsms.Models
         /// <summary>
         /// Create a new instance
         /// </summary>
-        public SendTextSMS(string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID)
+        public SendTextSMS(string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID, string instanceName)
         {
             UserName = userName;
             Password = password;
-            Originator = originator ?? "Seq Server"; // use up to 11 Alphabetic characters - that's our default
+            Originator = originator;
             Recipients = recipients.Split(',');
             MessageText = messageText;
             DeferredDeliveryTime = DateTime.Now.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
@@ -51,6 +51,26 @@ namespace Seq.App.aspsms.Models
             URLDeliveryNotification = urlDeliveryNotification;
             URLNonDeliveryNotification = urlNonDeliveryNotification;
             AffiliateID = affiliateID;
+
+            // Is Originator empty? - set default value
+            if (string.IsNullOrWhiteSpace(Originator))
+            {
+                Originator = instanceName.Length > 11 ? instanceName.Substring(0, 11) : instanceName;
+            }
+
+            // Use up to 11 Alphabetic characters or a phone number
+            if (Helpers.Originator.IsValidPhoneNumber(Originator))
+            {
+                // NOOP - later we check here if the phone number is unlocked
+            }
+            else if (Helpers.Originator.IsValidAlphabetic(Originator))
+            {
+                // NOOP
+            }
+            else
+            {
+                Originator = "Seq Server";
+            }
         }
 
         /// <summary>

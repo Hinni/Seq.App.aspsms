@@ -50,6 +50,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\Originator.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="NotifyReactor.cs" />
     <Compile Include="Models\SendTextSMS.cs" />

@@ -2,9 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Seq.App.aspsms</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <authors>Hinni</authors>
     <projectUrl>https://github.com/Hinni/Seq.App.aspsms</projectUrl>
+    <iconUrl>https://github.com/Hinni/Seq.App.aspsms/blob/master/assets/aspsms-icon3.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Allows you to notify a phone by SMS over aspsms.ch</description>
     <releaseNotes>See readme.txt in the package</releaseNotes>

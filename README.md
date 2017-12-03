@@ -7,7 +7,7 @@ App for the Seq event server.
 Allows you to notify a phone by SMS over aspsms.ch
 
 ## MessageText
-The final message contains the DateTime, Level and RenderedMessage from given event.
+The final message contains LocalDateTime, Level and RenderedMessage from given event.
 
 ## Caution
-Be carefull with your event filter. Don't send too many messages - or your will be blocked by the service provider.
+Be carefull with your event filter. Don't send too many messages - or you will be blocked by the service provider.
