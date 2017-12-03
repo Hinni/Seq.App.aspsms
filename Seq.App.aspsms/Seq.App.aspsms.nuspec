@@ -5,7 +5,7 @@
     <version>1.1.0</version>
     <authors>Hinni</authors>
     <projectUrl>https://github.com/Hinni/Seq.App.aspsms</projectUrl>
-    <iconUrl>https://github.com/Hinni/Seq.App.aspsms/blob/master/assets/aspsms-icon3.png</iconUrl>
+    <iconUrl>https://github.com/Hinni/Seq.App.aspsms/blob/master/assets/aspsms-icon3.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Allows you to notify a phone by SMS over aspsms.ch</description>
     <releaseNotes>See readme.txt in the package</releaseNotes>
