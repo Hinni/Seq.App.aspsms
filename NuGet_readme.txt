@@ -1,7 +1,7 @@
-Seq.App.asmsms
-==============
+Changelog Seq.App.asmsms
+========================
 
-v1.0.1 - 03.12.2017
+v1.1.0 - 03.12.2017
 - Check if Originator is valid or replace it with default value
 - Fix "Log delivery result to Seq" option
 - Fix some descriptions
