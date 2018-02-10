@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Seq.App.aspsms
 {
-    [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch")]
+    [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch provider.")]
     public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
     {
         private readonly string _postUrl = "https://json.aspsms.com/SendTextSMS";
@@ -98,7 +98,7 @@ namespace Seq.App.aspsms
                         try
                         {
                             var obj = new Result(result);
-                            Log.Information("SMS sent {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
+                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
                         }
                         catch (Exception ex)
                         {
@@ -108,7 +108,7 @@ namespace Seq.App.aspsms
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "There was a problem sending a SMS");
+                    Log.Error(ex, "There was a problem sending SMS");
                 }
             }
         }
