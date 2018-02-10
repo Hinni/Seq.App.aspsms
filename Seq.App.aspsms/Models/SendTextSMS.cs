@@ -7,7 +7,7 @@ using System.Text;
 namespace Seq.App.aspsms.Models
 {
     /// <summary>
-    /// Needed JSON object to Send a text SMS
+    /// Needed JSON object to send a SMS
     /// </summary>
     [DataContract]
     public class SendTextSMS
@@ -36,7 +36,7 @@ namespace Seq.App.aspsms.Models
         public string AffiliateID { get; private set; }
 
         /// <summary>
-        /// Create a new instance
+        /// Create a new instance of SendTextSMS
         /// </summary>
         public SendTextSMS(string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID, string instanceName)
         {
@@ -52,7 +52,7 @@ namespace Seq.App.aspsms.Models
             URLNonDeliveryNotification = urlNonDeliveryNotification;
             AffiliateID = affiliateID;
 
-            // Is Originator empty? - set default value
+            // Is Originator empty? - set default value to Seq instance name
             if (string.IsNullOrWhiteSpace(Originator))
             {
                 Originator = instanceName.Length > 11 ? instanceName.Substring(0, 11) : instanceName;
@@ -69,6 +69,7 @@ namespace Seq.App.aspsms.Models
             }
             else
             {
+                // Fallback - we use a default value
                 Originator = "Seq Server";
             }
         }

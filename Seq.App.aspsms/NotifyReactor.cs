@@ -44,9 +44,13 @@ namespace Seq.App.aspsms
 
         [SeqAppSetting(
             InputType = SettingInputType.Checkbox,
-            DisplayName = "Log delivery result to Seq",
-            HelpText = "Log transaction status after POST to aspsms.ch")]
+            DisplayName = "Log transmission status to Seq",
+            HelpText = "Log transmission status after POST to local Seq instance.")]
         public bool LogStatus { get; set; }
+
+        [SeqAppSetting(
+            InputType = SettingInputType.Checkbox,
+            DisplayName = "Include credits",
 
         [SeqAppSetting(
             IsOptional = true,
