@@ -2,7 +2,6 @@ Changelog Seq.App.asmsms
 ========================
 
 v1.2.0 - 11.02.2018
-- Check if Originator is unlocked if it is a number (only once per Originator change)
 - Add an option to include available credits to transmission status event
 - Fix some descriptions
 

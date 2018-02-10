@@ -108,10 +108,12 @@ namespace Seq.App.aspsms
                         {
                             var credits = new CheckCredits(Username, Password);
                             var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
-                            Log.ForContext("AvailableCredits", creditResult.Credits);
+                            Log.Information("SMS sent with {StatusCode} {StatusInfo} ({AvailableCredits} Credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
                         }
-
-                        Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
+                        else
+                        {
+                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);                            
+                        }
                     }
                     catch (Exception ex)
                     {

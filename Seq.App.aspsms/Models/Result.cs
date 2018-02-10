@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Seq.App.aspsms.Models
 {
+    /// <summary>
+    /// Needed JSON object to receive status results
+    /// </summary>
     [DataContract]
     public class Result
     {

@@ -13,6 +13,6 @@
   </metadata>
   <files>
     <file src="..\NuGet_readme.txt" target="readme.txt" />
-    <file src="..\LICENSE" target="LICENSE" />
+    <file src="..\LICENSE" target="LICENSE.txt" />
   </files>
 </package>
