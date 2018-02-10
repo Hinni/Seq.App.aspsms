@@ -9,7 +9,7 @@ namespace Seq.App.aspsms
     [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch provider.")]
     public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
     {
-        private readonly string _postUrl = "https://json.aspsms.com/SendTextSMS";
+        private readonly string _postUrl = "https://json.aspsms.com/";
 
         [SeqAppSetting(
             InputType = SettingInputType.Text,
@@ -97,19 +97,25 @@ namespace Seq.App.aspsms
             {
                 try
                 {
-                    var result = client.UploadString(_postUrl, data.GetAsJson());
+                    var result = client.UploadString($"{_postUrl}SendTextSMS", data.GetAsJson());
 
-                    if (LogStatus)
+                    if (!LogStatus) return;
+                    try
                     {
-                        try
+                        var obj = new Result(result);
+
+                        if (LogAvailableCredits)
                         {
-                            var obj = new Result(result);
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
+                            var credits = new CheckCredits(Username, Password);
+                            var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
+                            Log.ForContext("AvailableCredits", creditResult.Credits);
                         }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, "Can't parse status code from result", result);
-                        }
+
+                        Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, "Can't parse status code from result", result);
                     }
                 }
                 catch (Exception ex)
