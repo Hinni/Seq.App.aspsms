@@ -16,6 +16,7 @@ namespace Seq.App.aspsms.Tests
 
             // Assert
             Assert.Equal("SEQ", data.Originator);
+            Assert.NotEmpty(json);
         }
 
         [Fact]

@@ -51,6 +51,8 @@ namespace Seq.App.aspsms
         [SeqAppSetting(
             InputType = SettingInputType.Checkbox,
             DisplayName = "Include credits",
+            HelpText = "Add available credits to every transmission status.")]
+        public bool LogAvailableCredits { get; set; }
 
         [SeqAppSetting(
             IsOptional = true,

@@ -12,7 +12,12 @@ namespace Seq.App.aspsms.Models
         public string StatusCode { get; private set; }
         [DataMember]
         public string StatusInfo { get; private set; }
+        [DataMember]
+        public decimal? Credits { get; private set; }
 
+        /// <summary>
+        /// Create a new instance of Result
+        /// </summary>
         public Result(string result)
         {
             using (var stream = new MemoryStream(Encoding.Default.GetBytes(result)))
@@ -23,6 +28,7 @@ namespace Seq.App.aspsms.Models
 
                 StatusCode = obj.StatusCode;
                 StatusInfo = obj.StatusInfo;
+                Credits = obj.Credits;
             }
         }
     }

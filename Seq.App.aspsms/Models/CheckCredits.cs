@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Seq.App.aspsms.Models
 {
+    /// <summary>
+    /// Needed JSON object to send a SMS
+    /// </summary>
     [DataContract]
     public class CheckCredits
     {
@@ -13,6 +16,9 @@ namespace Seq.App.aspsms.Models
         [DataMember]
         public string Password { get; private set; }
 
+        /// <summary>
+        /// Create a new instance of CheckCredits
+        /// </summary>
         public CheckCredits(string userName, string password)
         {
             UserName = userName;
