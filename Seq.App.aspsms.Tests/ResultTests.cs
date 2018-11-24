@@ -23,10 +23,10 @@ namespace Seq.App.aspsms.Tests
         public void CheckValuesWithCredits()
         {
             // Arrange
-            
+
             // Act
             var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
-            
+
             // Assert
             Assert.Equal("1", data.StatusCode);
             Assert.Equal("OK", data.StatusInfo);

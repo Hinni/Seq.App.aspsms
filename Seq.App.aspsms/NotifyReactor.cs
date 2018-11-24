@@ -99,7 +99,11 @@ namespace Seq.App.aspsms
                 {
                     var result = client.UploadString($"{_postUrl}SendTextSMS", data.GetAsJson());
 
-                    if (!LogStatus) return;
+                    if (!LogStatus)
+                    {
+                        return;
+                    }
+
                     try
                     {
                         var obj = new Result(result);
@@ -112,7 +116,7 @@ namespace Seq.App.aspsms
                         }
                         else
                         {
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);                            
+                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
                         }
                     }
                     catch (Exception ex)
