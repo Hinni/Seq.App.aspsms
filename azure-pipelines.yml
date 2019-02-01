@@ -16,9 +16,13 @@ steps:
     version: '2.1.500'
 
 - task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '4.x'
+    checkLatest: true
 
 - task: NuGetCommand@2
   inputs:
+    command: restore
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
@@ -31,9 +35,28 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    codeCoverageEnabled: True
 
 - task: CopyFiles@2
+  displayName: 'Copy Nuget to artifacts directory'
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '**\Release\*.nupkg'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: True
+
+- task: NuGetCommand@2
+  displayName: 'Push Nuget as prerelease'
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: '<Name of the NuGet service connection>'
+
+- task: NuGetCommand@2
+  displayName: 'Push Nuget as official release'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: '<Name of the NuGet service connection>'
