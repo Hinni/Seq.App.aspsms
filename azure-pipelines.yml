@@ -1,12 +1,12 @@
-name: $(Date:yyyyMMdd).$(Rev:-rrr)
+name: $(Date:yyyyMMdd)$(Rev:-rrr)
 
 trigger:
   batch: true
   branches:
     include:
     - master
-    - features/*
     exclude:
+    - features/*
     - features/experimental/*
   paths:
     exclude:
@@ -15,7 +15,6 @@ trigger:
 pr:
   branches:
     include:
-    - master
     - features/*
     exclude:
     - features/experimental/*
@@ -33,13 +32,13 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Download DotNetCore 2.1'
+  displayName: 'Install DotNetCore v2.1'
   inputs:
     packageType: 'sdk'
     version: '2.1.500'
 
 - task: NuGetToolInstaller@0
-  displayName: 'Download NuGet 4.9.3'
+  displayName: 'Install NuGet v4.9.3'
   inputs:
     versionSpec: '4.9.3'
     checkLatest: false
@@ -73,8 +72,8 @@ steps:
     flattenFolders: True
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as prerelease $(Build.SourceBranch) $(Build.Reason)'
-  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+  displayName: 'Push NuGet as prerelease $(nuget.publishPrerelease)'
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
   inputs:
     command: restore
     restoreSolution: '$(solution)'
