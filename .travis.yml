@@ -1,8 +1,0 @@
-language: csharp
-solution: Seq.App.aspsms.sln
-install:
-  - nuget restore Seq.App.aspsms.sln
-  - nuget install xunit.runner.console -Version 2.2.0 -OutputDirectory testrunner
-script:
-  - xbuild /p:Configuration=Release Seq.App.aspsms.sln
-  - mono ./testrunner/xunit.runner.console.2.2.0/tools/xunit.console.exe ./Seq.App.aspsms.Tests/bin/Release/Seq.App.aspsms.Tests.dll
