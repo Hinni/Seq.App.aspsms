@@ -9,13 +9,13 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@0
-
 - task: DotNetCoreInstaller@0
   inputs:
     packageType: 'sdk'
     version: '2.1.500'
+
+steps:
+- task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
   inputs:
@@ -31,3 +31,9 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**\Release\*.nupkg'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
