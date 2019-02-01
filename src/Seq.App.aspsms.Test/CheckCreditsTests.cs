@@ -1,4 +1,5 @@
-﻿using Seq.App.aspsms.Models;
+﻿using Newtonsoft.Json;
+using Seq.App.aspsms.Models;
 using Xunit;
 
 namespace Seq.App.aspsms.Tests
@@ -12,7 +13,7 @@ namespace Seq.App.aspsms.Tests
             var data = new CheckCredits("Userkey", "Password");
 
             // Act
-            var json = data.GetAsJson();
+            var json = JsonConvert.SerializeObject(data);
 
             // Assert
             Assert.Equal("Userkey", data.UserName);

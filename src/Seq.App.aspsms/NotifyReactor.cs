@@ -1,4 +1,5 @@
-﻿using Seq.App.aspsms.Models;
+﻿using Newtonsoft.Json;
+using Seq.App.aspsms.Models;
 using Seq.Apps;
 using Seq.Apps.LogEvents;
 using System;
@@ -97,7 +98,7 @@ namespace Seq.App.aspsms
             {
                 try
                 {
-                    var result = client.UploadString($"{_postUrl}SendTextSMS", data.GetAsJson());
+                    var result = client.UploadString($"{_postUrl}SendTextSMS", JsonConvert.SerializeObject(data));
 
                     if (!LogStatus)
                     {
@@ -106,12 +107,12 @@ namespace Seq.App.aspsms
 
                     try
                     {
-                        var obj = new Result(result);
+                        var obj = JsonConvert.DeserializeObject<Result>(result);
 
                         if (LogAvailableCredits)
                         {
                             var credits = new CheckCredits(Username, Password);
-                            var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
+                            var creditResult = JsonConvert.DeserializeObject<Result>(client.UploadString($"{_postUrl}CheckCredits", JsonConvert.SerializeObject(credits)));
                             Log.Information("Text message sent with {StatusCode} {StatusInfo} ({AvailableCredits} credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
                         }
                         else

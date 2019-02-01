@@ -1,4 +1,5 @@
-﻿using Seq.App.aspsms.Models;
+﻿using Newtonsoft.Json;
+using Seq.App.aspsms.Models;
 using Xunit;
 
 namespace Seq.App.aspsms.Tests
@@ -12,7 +13,7 @@ namespace Seq.App.aspsms.Tests
             var data = new SendTextSMS("Userkey", "Password", "SEQ", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
             // Act
-            var json = data.GetAsJson();
+            var json = JsonConvert.SerializeObject(data);
 
             // Assert
             Assert.Equal("SEQ", data.Originator);
@@ -22,8 +23,6 @@ namespace Seq.App.aspsms.Tests
         [Fact]
         public void CheckOriginator()
         {
-            // Arrange
-
             // Act
             var data = new SendTextSMS("Userkey", "Password", "+41791234567", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
@@ -34,8 +33,6 @@ namespace Seq.App.aspsms.Tests
         [Fact]
         public void CheckInvalidPhoneNumberOriginator()
         {
-            // Arrange
-
             // Act
             var data = new SendTextSMS("Userkey", "Password", "+41 79 123 45 67", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
@@ -46,8 +43,6 @@ namespace Seq.App.aspsms.Tests
         [Fact]
         public void CheckOriginatorWithOversize()
         {
-            // Arrange
-
             // Act
             var data = new SendTextSMS("Userkey", "Password", null, "+41791234567,+41761234567", "Test Message", false, null, null, null, null, "SeqInstance001");
 
