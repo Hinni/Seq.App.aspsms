@@ -9,12 +9,12 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+steps:
 - task: DotNetCoreInstaller@0
   inputs:
     packageType: 'sdk'
     version: '2.1.500'
 
-steps:
 - task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
