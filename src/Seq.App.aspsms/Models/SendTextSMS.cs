@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace Seq.App.aspsms.Models
 {
-    public class SendTextSMS
+    public class SendTextSMS : JsonBase
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -12,23 +11,19 @@ namespace Seq.App.aspsms.Models
         public string MessageText { get; private set; }
         public string DeferredDeliveryTime { get; private set; }
         public string FlashingSMS { get; private set; }
-        [DataMember(EmitDefaultValue = false)]
         public string URLBufferedMessageNotification { get; private set; }
-        [DataMember(EmitDefaultValue = false)]
         public string URLDeliveryNotification { get; private set; }
-        [DataMember(EmitDefaultValue = false)]
         public string URLNonDeliveryNotification { get; private set; }
-        [DataMember(EmitDefaultValue = false)]
         public string AffiliateID { get; private set; }
 
-        public SendTextSMS(string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID, string instanceName)
+        public SendTextSMS(DateTime deferredDeliveryTime, string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID, string instanceName)
         {
             UserName = userName;
             Password = password;
             Originator = originator;
             Recipients = recipients.Split(',');
             MessageText = messageText;
-            DeferredDeliveryTime = DateTime.Now.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
+            DeferredDeliveryTime = deferredDeliveryTime.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
             FlashingSMS = Convert.ToString(flashingSMS);
             URLBufferedMessageNotification = urlBufferedMessageNotification;
             URLDeliveryNotification = urlDeliveryNotification;

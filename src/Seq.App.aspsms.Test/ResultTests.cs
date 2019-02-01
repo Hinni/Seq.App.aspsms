@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Seq.App.aspsms.Models;
+﻿using Seq.App.aspsms.Models;
 using Xunit;
 
 namespace Seq.App.aspsms.Tests
@@ -10,7 +9,7 @@ namespace Seq.App.aspsms.Tests
         public void CheckValues()
         {
             // Act
-            var data = JsonConvert.DeserializeObject<Result>("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
+            var data = Result.GetFromJson("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
 
             // Assert
             Assert.Equal("1", data.StatusCode);
@@ -22,7 +21,7 @@ namespace Seq.App.aspsms.Tests
         public void CheckValuesWithCredits()
         {
             // Act
-            var data = JsonConvert.DeserializeObject<Result>("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
+            var data = Result.GetFromJson("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
 
             // Assert
             Assert.Equal("1", data.StatusCode);

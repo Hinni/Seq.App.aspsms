@@ -1,6 +1,6 @@
 ﻿namespace Seq.App.aspsms.Models
 {
-    public class CheckCredits
+    public class CheckCredits : JsonBase
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
