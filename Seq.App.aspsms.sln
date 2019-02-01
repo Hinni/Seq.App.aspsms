@@ -1,28 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms", "Seq.App.aspsms\Seq.App.aspsms.csproj", "{95D01ED0-0B5C-49DC-B597-EA0F1DFEE466}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms", "src\Seq.App.aspsms\Seq.App.aspsms.csproj", "{C618F52C-9552-43E2-A55D-D48C147D1544}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{195C75DA-7692-4B99-AA7B-FF2C4BB69A7D}"
-	ProjectSection(SolutionItems) = preProject
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
-		.travis.yml = .travis.yml
-		CreatePackage.ps1 = CreatePackage.ps1
-		LICENSE = LICENSE
-		NuGet_readme.txt = NuGet_readme.txt
-		README.md = README.md
-		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms.Tests", "Seq.App.aspsms.Tests\Seq.App.aspsms.Tests.csproj", "{C8706B28-5872-441A-992B-089790090DEA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{49C2572E-BA0B-4C8F-A434-C4B97E8DC00E}"
-	ProjectSection(SolutionItems) = preProject
-		assets\aspsms-icon3.png = assets\aspsms-icon3.png
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms.Test", "src\Seq.App.aspsms.Test\Seq.App.aspsms.Test.csproj", "{295F96A9-3134-4D8A-82F4-8B497C3BC9C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,19 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95D01ED0-0B5C-49DC-B597-EA0F1DFEE466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95D01ED0-0B5C-49DC-B597-EA0F1DFEE466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95D01ED0-0B5C-49DC-B597-EA0F1DFEE466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95D01ED0-0B5C-49DC-B597-EA0F1DFEE466}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8706B28-5872-441A-992B-089790090DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8706B28-5872-441A-992B-089790090DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8706B28-5872-441A-992B-089790090DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8706B28-5872-441A-992B-089790090DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C618F52C-9552-43E2-A55D-D48C147D1544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C618F52C-9552-43E2-A55D-D48C147D1544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C618F52C-9552-43E2-A55D-D48C147D1544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C618F52C-9552-43E2-A55D-D48C147D1544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295F96A9-3134-4D8A-82F4-8B497C3BC9C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295F96A9-3134-4D8A-82F4-8B497C3BC9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295F96A9-3134-4D8A-82F4-8B497C3BC9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295F96A9-3134-4D8A-82F4-8B497C3BC9C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2B2EBB54-C98C-4927-B6CF-9D48DBE52CE9}
+		SolutionGuid = {D07CB526-BE65-4EF0-A33A-F8E1A5B06B81}
 	EndGlobalSection
 EndGlobal

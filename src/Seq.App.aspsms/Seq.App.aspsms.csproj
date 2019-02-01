@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>Hinni Solutions</Company>
+    <Authors>Hinni</Authors>
+    <Product>Seq</Product>
+    <Copyright>Copyright © 2017-2019 Hinni Solutions</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Hinni/Seq.App.aspsms</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Hinni/Seq.App.aspsms</PackageProjectUrl>
+    <PackageTags>Seq Seq-App Seq.App Event Logger SMS ASPSMS Notification</PackageTags>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Description>Allows you to notify a mobile phone by text message via aspsms.com</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Seq.Apps" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
