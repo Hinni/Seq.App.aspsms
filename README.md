@@ -5,7 +5,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Seq.App.aspsms.svg)](https://www.nuget.org/packages/Seq.App.aspsms/)
 
 Seq-App for Seq event server.
-Allows you to notify a mobile phone by SMS over aspsms.ch provider.
+Allows you to notify a mobile phone by text message via aspsms.com.
 
 ## MessageText
 

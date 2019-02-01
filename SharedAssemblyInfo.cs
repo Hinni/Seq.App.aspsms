@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyCompany("Hinni Solutions")]
 [assembly: AssemblyProduct("Seq")]
-[assembly: AssemblyCopyright("Copyright © 2017-2018 Hinni Solutions")]
+[assembly: AssemblyCopyright("Copyright © 2017-2019 Hinni Solutions")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,14 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms", "Seq.App.a
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{195C75DA-7692-4B99-AA7B-FF2C4BB69A7D}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		.travis.yml = .travis.yml
 		CreatePackage.ps1 = CreatePackage.ps1
+		LICENSE = LICENSE
 		NuGet_readme.txt = NuGet_readme.txt
 		README.md = README.md
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
-		.gitignore = .gitignore
-		.gitattributes = .gitattributes
-		LICENSE = LICENSE
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seq.App.aspsms.Tests", "Seq.App.aspsms.Tests\Seq.App.aspsms.Tests.csproj", "{C8706B28-5872-441A-992B-089790090DEA}"

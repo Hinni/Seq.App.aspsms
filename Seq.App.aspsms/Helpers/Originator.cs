@@ -2,9 +2,6 @@
 
 namespace Seq.App.aspsms.Helpers
 {
-    /// <summary>
-    /// Just basic checks - not much magic here
-    /// </summary>
     public static class Originator
     {
         public static bool IsValidAlphabetic(string value)

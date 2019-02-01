@@ -18,9 +18,6 @@ namespace Seq.App.aspsms.Models
         [DataMember]
         public decimal? Credits { get; private set; }
 
-        /// <summary>
-        /// Create a new instance of Result
-        /// </summary>
         public Result(string result)
         {
             using (var stream = new MemoryStream(Encoding.Default.GetBytes(result)))

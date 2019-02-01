@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Seq.App.aspsms
 {
-    [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch provider.")]
+    [SeqApp("Notify by SMS (ASPSMS)", Description = "Allows you to notify a mobile phone by text message via aspsms.com")]
     public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
     {
         private readonly string _postUrl = "https://json.aspsms.com/";
@@ -92,7 +92,7 @@ namespace Seq.App.aspsms
                 Username, Password, Originator, Recipients, message, FlashingSMS,
                 URLBufferedMessageNotification, URLDeliveryNotification, URLNonDeliveryNotification, AffiliateID, Host.InstanceName);
 
-            // Send SMS
+            // Send text message
             using (var client = new WebClient())
             {
                 try
@@ -112,11 +112,11 @@ namespace Seq.App.aspsms
                         {
                             var credits = new CheckCredits(Username, Password);
                             var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo} ({AvailableCredits} Credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
+                            Log.Information("Text message sent with {StatusCode} {StatusInfo} ({AvailableCredits} credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
                         }
                         else
                         {
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
+                            Log.Information("Text message sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
                         }
                     }
                     catch (Exception ex)
@@ -126,7 +126,7 @@ namespace Seq.App.aspsms
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "There was a problem sending SMS");
+                    Log.Error(ex, "There was a problem sending text message");
                 }
             }
         }

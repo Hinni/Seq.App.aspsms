@@ -7,7 +7,7 @@ using System.Text;
 namespace Seq.App.aspsms.Models
 {
     /// <summary>
-    /// Needed JSON object to send a SMS
+    /// Needed JSON object to send a text message
     /// </summary>
     [DataContract]
     public class SendTextSMS
@@ -35,9 +35,6 @@ namespace Seq.App.aspsms.Models
         [DataMember(EmitDefaultValue = false)]
         public string AffiliateID { get; private set; }
 
-        /// <summary>
-        /// Create a new instance of SendTextSMS
-        /// </summary>
         public SendTextSMS(string userName, string password, string originator, string recipients, string messageText, bool flashingSMS, string urlBufferedMessageNotification, string urlDeliveryNotification, string urlNonDeliveryNotification, string affiliateID, string instanceName)
         {
             UserName = userName;
@@ -74,9 +71,6 @@ namespace Seq.App.aspsms.Models
             }
         }
 
-        /// <summary>
-        /// Returns the class as JSON object
-        /// </summary>
         public string GetAsJson()
         {
             using (var stream = new MemoryStream())
