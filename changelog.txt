@@ -1,7 +1,7 @@
 Changelog Seq.App.asmsms
 ========================
 
-v2.0.0 - 01.02.2019
+v2.0.0 - 02.02.2019
 - Supported target frameworks are .NET Standard 2.0 and .NET 4.5.2
 - Switch to Azure Pipelines
 

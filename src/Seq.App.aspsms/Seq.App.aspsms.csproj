@@ -23,6 +23,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\changelog.txt" Link="changelog.txt" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Seq.Apps" Version="5.0.0" />
   </ItemGroup>
