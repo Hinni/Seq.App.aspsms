@@ -75,7 +75,7 @@ steps:
     flattenFolders: True
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as prerelease with version $(nugetVersionPrerelease)'
+  displayName: 'Push NuGet as prerelease with version $(nugetVersion)-$(Build.SourceVersion) from branch'
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
   inputs:
     command: push
@@ -86,7 +86,7 @@ steps:
     publishFeedCredentials: '$(nuget.credentials)'
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as official release with version $(nugetVersion)'
+  displayName: 'Push NuGet as official release with version $(nugetVersion) from master'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: restore
