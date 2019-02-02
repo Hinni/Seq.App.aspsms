@@ -67,20 +67,21 @@ steps:
     configuration: '$(buildConfiguration)'
     codeCoverageEnabled: True
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Pack prerelease NuGet from branch'
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'PullRequest'))
   inputs:
     command: pack
+    configuration: '$(buildConfiguration)'
+    packagesToPack: '**/Seq.App.aspsms.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)\packages'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)'
-    packagesToPack: '**/Seq.App.aspsms.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)\packages'
+    patchVersion: '$(Patch)' 
 
 - task: PublishPipelineArtifact@0
-  displayName: 'Publish prerelease NuGet as Pipeline Artifact'
+  displayName: 'Publish prerelease NuGet to Pipeline Artifact'
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'PullRequest'))
   inputs:
     artifactName: 'packages'
