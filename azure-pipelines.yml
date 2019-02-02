@@ -15,6 +15,7 @@ trigger:
 pr:
   branches:
     include:
+    - master
     - features/*
     exclude:
     - features/experimental/*
@@ -29,6 +30,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  nugetVersion: '2.0.0'
+  nugetVersionPrerelease: '$(nugetVersion)-$(Build.SourceVersion)'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -72,14 +75,18 @@ steps:
     flattenFolders: True
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as prerelease $(nuget.publishPrerelease)'
+  displayName: 'Push NuGet as prerelease with version $(nugetVersionPrerelease)'
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
   inputs:
-    command: restore
-    restoreSolution: '$(solution)'
+    command: push
+    versioningScheme: byEnvVar
+    versionEnvVar: nugetVersionPrerelease
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: external
+    publishFeedCredentials: '$(nuget.credentials)'
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as official release'
+  displayName: 'Push NuGet as official release with version $(nugetVersion)'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: restore
