@@ -30,8 +30,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetVersion: '2.0.0'
-  nugetVersionPrerelease: '$(nugetVersion)-$(Build.SourceVersion)'
+  Major: '2'
+  Minor: '0'
+  Patch: '0'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -66,8 +67,27 @@ steps:
     configuration: '$(buildConfiguration)'
     codeCoverageEnabled: True
 
+- task: NuGetCommand@2
+  displayName: 'Pack prerelease NuGet from branch'
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
+  inputs:
+    command: pack
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+    packDestination: '$(Build.ArtifactStagingDirectory)\packages'
+
+- task: PublishPipelineArtifact@0
+  displayName: 'Publish prerelease NuGet as Pipeline Artifact'
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
+  inputs:
+    artifactName: 'packages'
+    targetPath: '$(Build.ArtifactStagingDirectory)\packages'
+
 - task: CopyFiles@2
   displayName: 'Copy NuGet to artifacts directory'
+  enabled: false
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '**\Release\*.nupkg'
@@ -75,19 +95,12 @@ steps:
     flattenFolders: True
 
 - task: NuGetCommand@2
-  displayName: 'Push NuGet as prerelease with version $(nugetVersion)-$(Build.SourceVersion) from branch'
-  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'Manual'), variables['nuget.publishPrerelease'])
-  inputs:
-    command: push
-    versioningScheme: byEnvVar
-    versionEnvVar: nugetVersionPrerelease
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: external
-    publishFeedCredentials: '$(nuget.credentials)'
-
-- task: NuGetCommand@2
   displayName: 'Push NuGet as official release with version $(nugetVersion) from master'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  enabled: false
   inputs:
     command: restore
     restoreSolution: '$(solution)'
+    #packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    #nuGetFeedType: external
+    #publishFeedCredentials: '$(nuget.credentials)'

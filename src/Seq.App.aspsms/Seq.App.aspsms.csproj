@@ -9,12 +9,13 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Hinni/Seq.App.aspsms</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/Hinni/Seq.App.aspsms</PackageProjectUrl>
+    <PackageProjectUrl>https://www.technikaffin.ch/seq-app-aspsms/</PackageProjectUrl>
     <PackageTags>Seq Seq-App Seq.App Event Logger SMS ASPSMS Notification</PackageTags>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>Allows you to notify a mobile phone by text message via aspsms.com</Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>2.0.0</Version>
+    <PackageIconUrl>https://github.com/Hinni/Seq.App.aspsms/blob/master/assets/aspsms-icon3.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net4.5.2' ">
