@@ -80,21 +80,25 @@ steps:
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)' 
 
+- task: DotNetCoreCLI@2
+  displayName: 'Pack official NuGet from master'
+  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: pack
+    configuration: '$(buildConfiguration)'
+    packagesToPack: '**/Seq.App.aspsms.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)\packages'
+    versioningScheme: off
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)' 
+
 - task: PublishPipelineArtifact@0
   displayName: 'Publish prerelease NuGet to Pipeline Artifact'
   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'), in(variables['Build.Reason'], 'PullRequest'))
   inputs:
     artifactName: 'packages'
     targetPath: '$(Build.ArtifactStagingDirectory)\packages'
-
-- task: CopyFiles@2
-  displayName: 'Copy NuGet to artifacts directory'
-  enabled: false
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**\Release\*.nupkg'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-    flattenFolders: True
 
 - task: NuGetCommand@2
   displayName: 'Push NuGet as official release with version $(nugetVersion) from master'
