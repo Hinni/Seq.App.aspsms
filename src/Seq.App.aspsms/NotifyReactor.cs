@@ -7,7 +7,7 @@ using System.Net;
 namespace Seq.App.aspsms
 {
     [SeqApp("Notify by SMS (ASPSMS)", Description = "Allows you to notify a mobile phone by text message via aspsms.com")]
-    public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
+    public class Notify : SeqApp, ISubscribeTo<LogEventData>
     {
         private readonly string _postUrl = "https://json.aspsms.com/";
 

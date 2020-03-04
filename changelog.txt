@@ -1,8 +1,9 @@
 Changelog Seq.App.asmsms
 ========================
 
-v2.0.0 - 02.02.2019
+v2.0.0 - 04.03.2019
 - Supported target frameworks are .NET Standard 2.0 and .NET 4.5.2
+- Switch from Reactor to SeqApp
 - Switch to Azure Pipelines
 
 v1.2.0 - 11.02.2018
