@@ -36,16 +36,15 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Install DotNetCore v2.1'
+  displayName: 'Install DotNetCore v2.1.x'
   inputs:
     packageType: 'sdk'
-    version: '2.1.500'
+    version: '2.1.x'
 
 - task: NuGetToolInstaller@0
-  displayName: 'Install NuGet v4.9.3'
+  displayName: 'Install latest NuGet'
   inputs:
-    versionSpec: '4.9.3'
-    checkLatest: false
+    checkLatest: true
 
 - task: NuGetCommand@2
   displayName: 'Restore NuGet packages'
@@ -98,7 +97,7 @@ steps:
     versioningScheme: off
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)' 
+    patchVersion: '$(Patch)'
 
 - task: NuGetCommand@2
   displayName: 'Push NuGet as official release from master'
@@ -111,4 +110,4 @@ steps:
     versioningScheme: off
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
-    patchVersion: '$(Patch)' 
+    patchVersion: '$(Patch)'
