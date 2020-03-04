@@ -8,10 +8,8 @@ namespace Seq.App.aspsms.Tests
         [Fact]
         public void CheckValues()
         {
-            // Arrange
-
             // Act
-            var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
+            var data = Result.GetFromJson("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
 
             // Assert
             Assert.Equal("1", data.StatusCode);
@@ -22,11 +20,9 @@ namespace Seq.App.aspsms.Tests
         [Fact]
         public void CheckValuesWithCredits()
         {
-            // Arrange
-            
             // Act
-            var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
-            
+            var data = Result.GetFromJson("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
+
             // Assert
             Assert.Equal("1", data.StatusCode);
             Assert.Equal("OK", data.StatusInfo);

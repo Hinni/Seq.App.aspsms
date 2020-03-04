@@ -17,7 +17,7 @@ namespace Seq.App.aspsms.Tests
             // Assert
             Assert.Equal("Userkey", data.UserName);
             Assert.Equal("Password", data.Password);
-            Assert.NotEmpty(json);
+            Assert.Equal("{\"UserName\":\"Userkey\",\"Password\":\"Password\"}", json);
         }
     }
 }

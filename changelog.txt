@@ -1,6 +1,11 @@
 Changelog Seq.App.asmsms
 ========================
 
+v2.0.0 - 04.03.2019
+- Use .NET Standard 2.0 as target framework
+- Switch from Reactor to SeqApp
+- Switch to Azure Pipelines
+
 v1.2.0 - 11.02.2018
 - Add an option to include available credits to transmission status event
 - Fix some descriptions

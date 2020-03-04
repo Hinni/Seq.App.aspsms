@@ -6,8 +6,8 @@ using System.Net;
 
 namespace Seq.App.aspsms
 {
-    [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch provider.")]
-    public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
+    [SeqApp("Notify by SMS (ASPSMS)", Description = "Allows you to notify a mobile phone by text message via aspsms.com")]
+    public class Notify : SeqApp, ISubscribeTo<LogEventData>
     {
         private readonly string _postUrl = "https://json.aspsms.com/";
 
@@ -88,31 +88,35 @@ namespace Seq.App.aspsms
             var message = $"{evt.Data.LocalTimestamp.LocalDateTime} ({evt.Data.Level}) {evt.Data.RenderedMessage}";
 
             // Fill in data
-            var data = new SendTextSMS(
+            var data = new SendTextSMS(DateTime.Now,
                 Username, Password, Originator, Recipients, message, FlashingSMS,
                 URLBufferedMessageNotification, URLDeliveryNotification, URLNonDeliveryNotification, AffiliateID, Host.InstanceName);
 
-            // Send SMS
+            // Send text message
             using (var client = new WebClient())
             {
                 try
                 {
                     var result = client.UploadString($"{_postUrl}SendTextSMS", data.GetAsJson());
 
-                    if (!LogStatus) return;
+                    if (!LogStatus)
+                    {
+                        return;
+                    }
+
                     try
                     {
-                        var obj = new Result(result);
+                        var obj = Result.GetFromJson(result);
 
                         if (LogAvailableCredits)
                         {
                             var credits = new CheckCredits(Username, Password);
-                            var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo} ({AvailableCredits} Credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
+                            var creditResult = Result.GetFromJson(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
+                            Log.Information("Text message sent with {StatusCode} {StatusInfo} ({AvailableCredits} credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
                         }
                         else
                         {
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);                            
+                            Log.Information("Text message sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
                         }
                     }
                     catch (Exception ex)
@@ -122,7 +126,7 @@ namespace Seq.App.aspsms
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "There was a problem sending SMS");
+                    Log.Error(ex, "There was a problem sending text message");
                 }
             }
         }
