@@ -36,10 +36,10 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 2.1.500'
+  displayName: 'Use latest .NET Core sdk 3.1'
   inputs:
     packageType: sdk
-    version: 2.1.500
+    version: 3.1.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: NuGetToolInstaller@1
@@ -54,19 +54,22 @@ steps:
     command: restore
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  displayName: 'Build multi-target framework project'
+- task: DotNetCoreCLI@2
+  displayName: 'Build project'
   inputs:
-    solution: '$(solution)'
+    command: 'build'
+    projects: '**/Seq.App.aspsms.csproj'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   displayName: 'Run tests'
   inputs:
+    command: 'test'
+    projects: '**/Seq.App.aspsms.Test.csproj'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    codeCoverageEnabled: True
+    publishTestResults: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Pack prerelease NuGet from branch'
