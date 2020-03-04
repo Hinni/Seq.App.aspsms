@@ -35,11 +35,12 @@ variables:
   Patch: '0'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Install DotNetCore v2.1.x'
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 2.1.x'
   inputs:
-    packageType: 'sdk'
-    version: '2.1.x'
+    packageType: sdk
+    version: 2.1.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: NuGetToolInstaller@0
   displayName: 'Install latest NuGet'
