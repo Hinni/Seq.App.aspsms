@@ -1,11 +1,12 @@
-﻿using Seq.App.aspsms.Helpers;
-using Xunit;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Seq.App.aspsms.Helpers;
 
 namespace Seq.App.aspsms.Tests
 {
+    [TestClass]
     public class OriginatorTests
     {
-        [Fact]
+        [TestMethod]
         public void IsValidAlphabetic_fail()
         {
             // Arrange
@@ -15,10 +16,10 @@ namespace Seq.App.aspsms.Tests
             var result = Originator.IsValidAlphabetic(value);
 
             // Assert
-            Assert.False(result);
+            Assert.IsFalse(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void IsValidAlphabetic_success()
         {
             // Arrange
@@ -28,10 +29,10 @@ namespace Seq.App.aspsms.Tests
             var result = Originator.IsValidAlphabetic(value);
 
             // Assert
-            Assert.True(result);
+            Assert.IsTrue(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void IsValidPhoneNumber_fail()
         {
             // Arrange
@@ -41,10 +42,10 @@ namespace Seq.App.aspsms.Tests
             var result = Originator.IsValidPhoneNumber(value);
 
             // Assert
-            Assert.False(result);
+            Assert.IsFalse(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void IsValidPhoneNumber_success()
         {
             // Arrange
@@ -54,7 +55,7 @@ namespace Seq.App.aspsms.Tests
             var result = Originator.IsValidPhoneNumber(value);
 
             // Assert
-            Assert.True(result);
+            Assert.IsTrue(result);
         }
     }
 }

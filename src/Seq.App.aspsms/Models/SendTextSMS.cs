@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Text.Json;
 
 namespace Seq.App.aspsms.Models
 {
-    public class SendTextSMS : JsonBase
+    public class SendTextSMS
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -50,6 +51,11 @@ namespace Seq.App.aspsms.Models
                 // Fallback - we use a default value
                 Originator = "Seq Server";
             }
+        }
+
+        public string GetAsJson()
+        {
+            return JsonSerializer.Serialize(this, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Seq.App.aspsms.Models;
-using Xunit;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Seq.App.aspsms.Models;
 
 namespace Seq.App.aspsms.Tests
 {
+    [TestClass]
     public class CheckCreditsTests
     {
-        [Fact]
+        [TestMethod]
         public void CheckJsonOutput()
         {
             // Arrange
@@ -15,9 +16,9 @@ namespace Seq.App.aspsms.Tests
             var json = data.GetAsJson();
 
             // Assert
-            Assert.Equal("Userkey", data.UserName);
-            Assert.Equal("Password", data.Password);
-            Assert.Equal("{\"UserName\":\"Userkey\",\"Password\":\"Password\"}", json);
+            Assert.AreEqual("Userkey", data.UserName);
+            Assert.AreEqual("Password", data.Password);
+            Assert.AreEqual("{\"UserName\":\"Userkey\",\"Password\":\"Password\"}", json);
         }
     }
 }

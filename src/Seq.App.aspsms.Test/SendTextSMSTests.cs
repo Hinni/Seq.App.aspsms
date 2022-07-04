@@ -1,12 +1,13 @@
-﻿using Seq.App.aspsms.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Seq.App.aspsms.Models;
 using System;
-using Xunit;
 
 namespace Seq.App.aspsms.Tests
 {
+    [TestClass]
     public class SendTextSMSTests
     {
-        [Fact]
+        [TestMethod]
         public void CheckJsonOutput()
         {
             // Arrange
@@ -16,38 +17,38 @@ namespace Seq.App.aspsms.Tests
             var json = data.GetAsJson();
 
             // Assert
-            Assert.Equal("SEQ", data.Originator);
-            Assert.Equal("{\"UserName\":\"Userkey\",\"Password\":\"Password\",\"Originator\":\"SEQ\",\"Recipients\":[\"+41791234567\",\"+41761234567\"],\"MessageText\":\"Test Message\",\"DeferredDeliveryTime\":\"2019-02-01T20:53:00.000Z\",\"FlashingSMS\":\"False\"}", json);
+            Assert.AreEqual("SEQ", data.Originator);
+            Assert.AreEqual("{\"UserName\":\"Userkey\",\"Password\":\"Password\",\"Originator\":\"SEQ\",\"Recipients\":[\"+41791234567\",\"+41761234567\"],\"MessageText\":\"Test Message\",\"DeferredDeliveryTime\":\"2019-02-01T20:53:00.000Z\",\"FlashingSMS\":\"False\"}", json);
         }
 
-        [Fact]
+        [TestMethod]
         public void CheckOriginator()
         {
             // Act
             var data = new SendTextSMS(new DateTime(2019, 02, 01, 20, 53, 00, DateTimeKind.Utc), "Userkey", "Password", "+41791234567", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
             // Assert
-            Assert.Equal("+41791234567", data.Originator);
+            Assert.AreEqual("+41791234567", data.Originator);
         }
 
-        [Fact]
+        [TestMethod]
         public void CheckInvalidPhoneNumberOriginator()
         {
             // Act
             var data = new SendTextSMS(new DateTime(2019, 02, 01, 20, 53, 00, DateTimeKind.Utc), "Userkey", "Password", "+41 79 123 45 67", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
             // Assert
-            Assert.Equal("Seq Server", data.Originator);
+            Assert.AreEqual("Seq Server", data.Originator);
         }
 
-        [Fact]
+        [TestMethod]
         public void CheckOriginatorWithOversize()
         {
             // Act
             var data = new SendTextSMS(new DateTime(2019, 02, 01, 20, 53, 00, DateTimeKind.Utc), "Userkey", "Password", null, "+41791234567,+41761234567", "Test Message", false, null, null, null, null, "SeqInstance001");
 
             // Assert
-            Assert.Equal("SeqInstance", data.Originator);
+            Assert.AreEqual("SeqInstance", data.Originator);
         }
     }
 }
