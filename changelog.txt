@@ -1,6 +1,9 @@
 Changelog Seq.App.asmsms
 ========================
 
+v2.0.0 - 04.06.2022
+- Use .NET 6
+
 v2.0.0 - 04.03.2019
 - Use .NET Standard 2.0 as target framework
 - Switch from Reactor to SeqApp
