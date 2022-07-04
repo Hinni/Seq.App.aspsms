@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net6.0</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="3.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="3.1.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
+		<PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Seq.App.aspsms\Seq.App.aspsms.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Seq.App.aspsms\Seq.App.aspsms.csproj" />
+	</ItemGroup>
 
 </Project>
