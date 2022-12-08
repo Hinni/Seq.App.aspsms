@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Seq.App.aspsms.Helpers
+﻿namespace Seq.App.aspsms.Helpers
 {
     /// <summary>
     /// Just basic checks - not much magic here

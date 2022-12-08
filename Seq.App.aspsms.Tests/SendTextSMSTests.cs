@@ -1,7 +1,4 @@
-﻿using Seq.App.aspsms.Models;
-using Xunit;
-
-namespace Seq.App.aspsms.Tests
+﻿namespace Seq.App.aspsms.Tests
 {
     public class SendTextSMSTests
     {
@@ -12,7 +9,7 @@ namespace Seq.App.aspsms.Tests
             var data = new SendTextSMS("Userkey", "Password", "SEQ", "+41791234567,+41761234567", "Test Message", false, null, null, null, null, null);
 
             // Act
-            var json = data.GetAsJson();
+            var json = JsonSerializer.Serialize(data);
 
             // Assert
             Assert.Equal("SEQ", data.Originator);

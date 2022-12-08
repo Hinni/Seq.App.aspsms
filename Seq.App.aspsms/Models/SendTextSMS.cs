@@ -1,30 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
-
-namespace Seq.App.aspsms.Models
+﻿namespace Seq.App.aspsms.Models
 {
     /// <summary>
     /// Needed JSON object to send a SMS
     /// </summary>
-    [DataContract]
     public class SendTextSMS
     {
-        [DataMember]
         public string UserName { get; private set; }
-        [DataMember]
         public string Password { get; private set; }
-        [DataMember]
         public string Originator { get; private set; }
-        [DataMember]
         public string[] Recipients { get; private set; }
-        [DataMember]
         public string MessageText { get; private set; }
-        [DataMember]
         public string DeferredDeliveryTime { get; private set; }
-        [DataMember]
         public string FlashingSMS { get; private set; }
         [DataMember(EmitDefaultValue = false)]
         public string URLBufferedMessageNotification { get; private set; }
@@ -71,19 +57,6 @@ namespace Seq.App.aspsms.Models
             {
                 // Fallback - we use a default value
                 Originator = "Seq Server";
-            }
-        }
-
-        /// <summary>
-        /// Returns the class as JSON object
-        /// </summary>
-        public string GetAsJson()
-        {
-            using (var stream = new MemoryStream())
-            {
-                var ser = new DataContractJsonSerializer(typeof(SendTextSMS));
-                ser.WriteObject(stream, this);
-                return Encoding.Default.GetString(stream.ToArray());
             }
         }
     }

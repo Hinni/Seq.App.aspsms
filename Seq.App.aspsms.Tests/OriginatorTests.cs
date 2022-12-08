@@ -1,7 +1,4 @@
-﻿using Seq.App.aspsms.Helpers;
-using Xunit;
-
-namespace Seq.App.aspsms.Tests
+﻿namespace Seq.App.aspsms.Tests
 {
     public class OriginatorTests
     {

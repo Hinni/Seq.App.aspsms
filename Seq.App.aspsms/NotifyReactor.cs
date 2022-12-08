@@ -1,13 +1,7 @@
-﻿using Seq.App.aspsms.Models;
-using Seq.Apps;
-using Seq.Apps.LogEvents;
-using System;
-using System.Net;
-
-namespace Seq.App.aspsms
+﻿namespace Seq.App.aspsms
 {
     [SeqApp("Notify by SMS (ASPSMS)", Description = "Send a SMS to a mobile phone over aspsms.ch provider.")]
-    public class NotifyReactor : Reactor, ISubscribeTo<LogEventData>
+    public class NotifyReactor : SeqApp, ISubscribeTo<LogEventData>
     {
         private readonly string _postUrl = "https://json.aspsms.com/";
 
@@ -93,31 +87,33 @@ namespace Seq.App.aspsms
                 URLBufferedMessageNotification, URLDeliveryNotification, URLNonDeliveryNotification, AffiliateID, Host.InstanceName);
 
             // Send SMS
-            using (var client = new WebClient())
+            using (var client = new HttpClient() { BaseAddress = new Uri(_postUrl) })
             {
                 try
                 {
-                    var result = client.UploadString($"{_postUrl}SendTextSMS", data.GetAsJson());
+                    var response = client.PostAsJsonAsync($"SendTextSMS", data).GetAwaiter().GetResult();
+                    response.EnsureSuccessStatusCode();
+
 
                     if (!LogStatus) return;
                     try
                     {
-                        var obj = new Result(result);
+                        var obj = JsonSerializer.Deserialize<Result>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
 
                         if (LogAvailableCredits)
                         {
                             var credits = new CheckCredits(Username, Password);
-                            var creditResult = new Result(client.UploadString($"{_postUrl}CheckCredits", credits.GetAsJson()));
+                            var creditResult = JsonSerializer.Deserialize<Result>(client.PostAsJsonAsync($"CheckCredits", credits).GetAwaiter().GetResult().Content.ReadAsStringAsync().GetAwaiter().GetResult());
                             Log.Information("SMS sent with {StatusCode} {StatusInfo} ({AvailableCredits} Credits left)", obj.StatusCode, obj.StatusInfo, creditResult.Credits);
                         }
                         else
                         {
-                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);                            
+                            Log.Information("SMS sent with {StatusCode} {StatusInfo}", obj.StatusCode, obj.StatusInfo);
                         }
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex, "Can't parse status code from result", result);
+                        Log.Error(ex, "Can't parse status code from result");
                     }
                 }
                 catch (Exception ex)

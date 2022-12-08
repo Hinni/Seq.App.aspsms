@@ -1,6 +1,9 @@
 Changelog Seq.App.asmsms
 ========================
 
+v2.0.0 - 08.12.2022
+- Using DotNet 6 (LTS)
+
 v1.2.0 - 11.02.2018
 - Add an option to include available credits to transmission status event
 - Fix some descriptions
