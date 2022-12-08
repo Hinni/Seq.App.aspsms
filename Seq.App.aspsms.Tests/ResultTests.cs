@@ -1,7 +1,4 @@
-﻿using Seq.App.aspsms.Models;
-using Xunit;
-
-namespace Seq.App.aspsms.Tests
+﻿namespace Seq.App.aspsms.Tests
 {
     public class ResultTests
     {
@@ -11,7 +8,7 @@ namespace Seq.App.aspsms.Tests
             // Arrange
 
             // Act
-            var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
+            var data = JsonSerializer.Deserialize<Result>("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\"}");
 
             // Assert
             Assert.Equal("1", data.StatusCode);
@@ -25,7 +22,7 @@ namespace Seq.App.aspsms.Tests
             // Arrange
             
             // Act
-            var data = new Result("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":\"567\"}");
+            var data = JsonSerializer.Deserialize<Result>("{\"StatusCode\":\"1\",\"StatusInfo\":\"OK\",\"Credits\":567}");
             
             // Assert
             Assert.Equal("1", data.StatusCode);

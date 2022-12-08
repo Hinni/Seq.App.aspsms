@@ -1,5 +1,4 @@
-﻿using Seq.App.aspsms.Models;
-using Xunit;
+﻿using System.Text.Json;
 
 namespace Seq.App.aspsms.Tests
 {
@@ -12,7 +11,7 @@ namespace Seq.App.aspsms.Tests
             var data = new CheckCredits("Userkey", "Password");
 
             // Act
-            var json = data.GetAsJson();
+            var json = JsonSerializer.Serialize(data);
 
             // Assert
             Assert.Equal("Userkey", data.UserName);
