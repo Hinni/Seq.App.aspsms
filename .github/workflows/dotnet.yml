@@ -3,14 +3,11 @@ name: Build
 on:
   push:
     branches:
-      paths-ignore:
-        - '*.md'
-        - '*.txt'
+      - master
   pull_request:
-    branches:
-      paths-ignore:
-        - '*.md'
-        - '*.txt'
+    paths-ignore:
+      - '*.md'
+      - '*.txt'
 
 jobs:
   build:
