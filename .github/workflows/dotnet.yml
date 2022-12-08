@@ -1,12 +1,16 @@
-name: build
+name: Build
 
 on:
   push:
     branches:
-      - main
+      paths-ignore:
+        - '*.md'
+        - '*.txt'
   pull_request:
     branches:
-      - main, staging
+      paths-ignore:
+        - '*.md'
+        - '*.txt'
 
 jobs:
   build:
@@ -25,6 +29,6 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
