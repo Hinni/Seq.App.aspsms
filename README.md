@@ -1,5 +1,8 @@
 # Seq.App.aspsms
-[![Build Status](https://dev.azure.com/hinnipipe/Github%20Pipeline/_apis/build/status/Hinni.Seq.App.aspsms?branchName=master)](https://dev.azure.com/hinnipipe/Github%20Pipeline/_build/latest?definitionId=3&branchName=master)
+
+> [!IMPORTANT]
+> This repository has been archived on June 8th, 2026.
+
 [![GitHub release](https://img.shields.io/github/release/Hinni/Seq.App.aspsms.svg)](https://github.com/Hinni/Seq.App.aspsms/releases)
 [![NuGet](https://img.shields.io/nuget/v/Seq.App.aspsms.svg)](https://www.nuget.org/packages/Seq.App.aspsms/)
 
